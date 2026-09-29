@@ -1,0 +1,57 @@
+{
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workbookDisplayName": {
+      "type": "string",
+      "defaultValue": "HTTP2xx",
+      "metadata": {
+        "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
+      }
+    },
+    "workbookType": {
+      "type": "string",
+      "defaultValue": "workbook",
+      "metadata": {
+        "description": "The gallery that the workbook will been shown under. Supported values include workbook, tsg, etc. Usually, this is 'workbook'"
+      }
+    },
+    "workbookSourceId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/574a07c8-b128-4a24-ac5f-1b8550b5a804/resourcegroups/test-webapp",
+      "metadata": {
+        "description": "The id of resource instance to which the workbook will be associated"
+      }
+    },
+    "workbookId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]",
+      "metadata": {
+        "description": "The unique guid for this workbook instance"
+      }
+    }
+  },
+  "resources": [
+    {
+      "name": "[parameters('workbookId')]",
+      "type": "microsoft.insights/workbooks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2022-04-01",
+      "dependsOn": [],
+      "kind": "shared",
+      "properties": {
+        "displayName": "[parameters('workbookDisplayName')]",
+        "serializedData": "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":10,\"content\":{\"chartId\":\"workbook412b4d86-6ff9-4759-ae47-5587501384fc\",\"version\":\"MetricsItem/2.0\",\"size\":0,\"chartType\":2,\"resourceType\":\"microsoft.web/sites\",\"metricScope\":0,\"resourceIds\":[\"/subscriptions/574a07c8-b128-4a24-ac5f-1b8550b5a804/resourceGroups/test-webapp/providers/Microsoft.Web/sites/demodash-jmre75moeoxeg-web-app\"],\"timeContext\":{\"durationMs\":86400000},\"metrics\":[{\"namespace\":\"microsoft.web/sites\",\"metric\":\"microsoft.web/sites--Http2xx\",\"aggregation\":1}],\"gridSettings\":{\"rowLimit\":10000}},\"name\":\"metric - 0\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"/subscriptions/574a07c8-b128-4a24-ac5f-1b8550b5a804/resourcegroups/test-webapp\"]}",
+        "version": "1.0",
+        "sourceId": "[parameters('workbookSourceId')]",
+        "category": "[parameters('workbookType')]"
+      }
+    }
+  ],
+  "outputs": {
+    "workbookId": {
+      "type": "string",
+      "value": "[resourceId( 'microsoft.insights/workbooks', parameters('workbookId'))]"
+    }
+  },
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#"
+}
