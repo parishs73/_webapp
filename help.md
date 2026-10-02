@@ -4,11 +4,11 @@ zip -ju <zip file name> <files to add seperated by space>
 
 before deployemtn make sure the environmnet has do build during deploy set to true
 
-az webapp config appsettings set --name demodash-caeu6qo5wdic4-web-app --resource-group pizza-app --settings SCM_DO_BUILD_DURING_DEPLOYMENT=true
+az webapp config appsettings set --name <web-app name>> --resource-group <resource group>> --settings SCM_DO_BUILD_DURING_DEPLOYMENT=true
 
 when deploying the webapp use:
 
-az webapp deploy --name demodash-caeu6qo5wdic4-web-app -g pizza-app --src-path deployment.zip --type zip
+az webapp deploy --name <web-app name> -g <resource group> --src-path deployment.zip --type zip
 
 This took days to sort out and ai wasn't that much help
 

@@ -58,6 +58,14 @@ resource webApp 'Microsoft.Web/sites@2024-04-01' = {
           name: 'COSMOS_KEY'
           value: cosmosAccount.listKeys().primaryMasterKey
         }
+        {
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+          value: appInsights.properties.ConnectionString
+        }
+        {
+          name: 'ApplicationInsightsAgent_EXTENSION_VERSION'
+          value: '~3'
+        }
       ]
     }
   }
